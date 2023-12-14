@@ -1,0 +1,29 @@
+{% extends "users/base.html" %}
+{% block title %} Home Page {% endblock title%}
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">Добро пожаловать, {{user.first_name.title|default:'АНОНИМ?'}}</h1>
+        <p class="lead">
+            <b>Добро пожаловать в мир змеи — готовы управлять судьбой хищника?</b>
+        </p>
+        <hr class="my-4">
+        <p class="lead">
+            {% if user.is_authenticated %}
+                <p class="lead">
+                    <b>Спасибо, что зарегистрировались на нашем сайте <3.</b>
+                </p>
+                <a class="btn btn-primary btn-lg" href="{% url 'game' %}" role="button">Играть в Змейку</a>
+                <a class="btn btn-primary btn-lg" href="{% url 'logout' %}" role="button">Выйти из аккаунта</a>
+            {% else %}
+                <p class="lead">
+                    <b>Спасибо, что посетели наш сайт <3. Зарегистрируйтесь, пожалуйста, чтоб играть в Змейку!</b>
+                </p>
+                <p class="lead">
+                    <b>Что? У вас уже есть аккаунт? Тогда войдите в него, чтобы начать игру!</b>
+                </p>
+                <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Войти</a>
+            {% endif %}
+        </p>
+    </div>
+
+{% endblock content %}
